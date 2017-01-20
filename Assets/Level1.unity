@@ -315,8 +315,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1976030839}
   - component: {fileID: 1976030840}
+  - component: {fileID: 1976030841}
   m_Layer: 0
-  m_Name: Microwave
+  m_Name: MicrowaveWarrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,3 +355,14 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1976030841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1976030838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ea218c22527fc46846fcd6ff7d5a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
