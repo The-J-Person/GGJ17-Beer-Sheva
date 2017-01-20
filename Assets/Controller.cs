@@ -27,8 +27,6 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            //if (!goingForward)
-            //    rotationDirection *= -1;
             goingForward = true;
             
             //if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
@@ -53,6 +51,7 @@ public class Controller : MonoBehaviour
 
         if (doubleClicker.DoubleClickCheck())
         {
+            animator.Play("Fire");
             GameObject bullet = (GameObject)Instantiate(wave, waveSpawnPoint.transform.position, waveSpawnDirection.transform.rotation);
             Destroy(bullet, 5);
         }
