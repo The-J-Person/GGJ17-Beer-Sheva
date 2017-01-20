@@ -8,11 +8,11 @@ public class bulletwave : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		transform.Translate (transform.right * Time.deltaTime * speed);
+		Vector2 dir = new Vector2(Mathf.Cos (transform.rotation.z * Mathf. Deg2Rad), Mathf.Sin (transform.rotation.z * Mathf. Deg2Rad));
+		transform.Translate (dir * Time.deltaTime * speed);
 	}
 }
