@@ -5,17 +5,36 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
-    public GameObject[] warriors;
+    public Controller[] warriors;
     public GameObject worldCenter;
 
 	void Start () {
-        IEnumerator<Vector3> t = getNextWarriorStartPosition();
+        IEnumerator<Vector3> startPosIt = getNextWarriorStartPosition();
+        IEnumerator<KeyCode> keyIt = getNextKey();
         for (int i = 0; i < warriors.Length; i++)
         {            
-            t.MoveNext();
-            Instantiate(warriors[i], t.Current, Quaternion.LookRotation(worldCenter.transform.position) );            
+            startPosIt.MoveNext();
+            keyIt.MoveNext();
+
+            Instantiate(warriors[i], startPosIt.Current, Quaternion.LookRotation(worldCenter.transform.position) );
+            warriors[i].keyCode = keyIt.Current;
         }
 	}
+
+    private IEnumerator<KeyCode> getNextKey()
+    {
+        List<KeyCode> preconfiguredWarriorsKeys = new List<KeyCode>();
+        preconfiguredWarriorsKeys.Add(KeyCode.Space);
+        preconfiguredWarriorsKeys.Add(KeyCode.Q);
+        preconfiguredWarriorsKeys.Add(KeyCode.P);
+        preconfiguredWarriorsKeys.Add(KeyCode.M);
+        preconfiguredWarriorsKeys.Add(KeyCode.Z);
+
+        for (int i=0; i < warriors.Length; i++)
+        {
+            yield return preconfiguredWarriorsKeys[i];
+        }
+    }
 
     private IEnumerator<Vector3> getNextWarriorStartPosition()
     {

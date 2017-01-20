@@ -7,7 +7,7 @@ public class Controller : MonoBehaviour
 
     private Animator animator;
     private Vector3 rotationDirection;
-    private DoubleClicker doubleClicker = new DoubleClicker(KeyCode.Space);
+    private DoubleClicker doubleClicker;
     bool goingForward = false;
 
     public int rotationSpeed;
@@ -16,16 +16,19 @@ public class Controller : MonoBehaviour
     public GameObject waveSpawnPoint;
     public GameObject waveSpawnDirection;
 
+    public KeyCode keyCode;
+
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rotationDirection = Vector3.back * rotationSpeed;
+        doubleClicker = new DoubleClicker(keyCode);
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(keyCode))
         {
             goingForward = true;
             
@@ -39,7 +42,7 @@ public class Controller : MonoBehaviour
             transform.Rotate(rotationDirection);
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(keyCode))
         {
             goingForward = false;
         }

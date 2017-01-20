@@ -119,10 +119,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warriors:
-  - {fileID: 1048118635624188, guid: 91e77997395cfbe47b0d6a1e2d668439, type: 2}
-  - {fileID: 1048118635624188, guid: 91e77997395cfbe47b0d6a1e2d668439, type: 2}
-  - {fileID: 1048118635624188, guid: 91e77997395cfbe47b0d6a1e2d668439, type: 2}
-  - {fileID: 1048118635624188, guid: 91e77997395cfbe47b0d6a1e2d668439, type: 2}
+  - {fileID: 114192287561609492, guid: 91e77997395cfbe47b0d6a1e2d668439, type: 2}
+  - {fileID: 114192287561609492, guid: 91e77997395cfbe47b0d6a1e2d668439, type: 2}
+  - {fileID: 114192287561609492, guid: 91e77997395cfbe47b0d6a1e2d668439, type: 2}
+  - {fileID: 114192287561609492, guid: 91e77997395cfbe47b0d6a1e2d668439, type: 2}
   worldCenter: {fileID: 1614859206}
 --- !u!4 &951876877
 Transform:
