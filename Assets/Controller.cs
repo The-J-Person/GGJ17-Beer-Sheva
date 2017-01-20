@@ -23,21 +23,22 @@ public class Controller : MonoBehaviour
         rotationDirection = Vector3.back * rotationSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.Rotate(rotationDirection);
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             //if (!goingForward)
             //    rotationDirection *= -1;
             goingForward = true;
-
+            
             //if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
             //{
             //animator.Play("Fire");
             //}
+        }
+        else
+        {
+            transform.Rotate(rotationDirection);
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
@@ -47,9 +48,7 @@ public class Controller : MonoBehaviour
 
         if (goingForward)
         {
-
-            //transform.Translate(transform.rotation * microwaveSpeed * Time.deltaTime);            
-            transform.position += transform.position * Time.deltaTime * microwaveSpeed;
+            transform.Translate(0,0.01f,0,Space.Self);            
         }
 
         if (doubleClicker.DoubleClickCheck())
