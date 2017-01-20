@@ -9,6 +9,7 @@ public class Controller : MonoBehaviour {
     public int rotationSpeed;
     public GameObject wave;
     public GameObject waveSpawnPoint;
+    public GameObject waveSpawnDirection;
     
     void Start () {
         animator = GetComponent<Animator>();
@@ -22,7 +23,7 @@ public class Controller : MonoBehaviour {
         {
 
             //rotationDirection *= -1;
-            Instantiate(wave, waveSpawnPoint.transform.position, transform.rotation);
+            Instantiate(wave, waveSpawnPoint.transform.position, waveSpawnDirection.transform.rotation);
 
             //if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
             //{

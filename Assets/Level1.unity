@@ -177,12 +177,40 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1322451430}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.012, y: 0.436, z: 0}
+  m_LocalPosition: {x: -0.248, y: 0.436, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1976030839}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1537750825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1537750826}
+  m_Layer: 0
+  m_Name: waveSpawnDirection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1537750826
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1537750825}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7100671, w: 0.70413405}
+  m_LocalPosition: {x: 0, y: 0.401, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1976030839}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.481}
 --- !u!1 &1744576457
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +392,7 @@ Transform:
   - {fileID: 1744576458}
   - {fileID: 230403786}
   - {fileID: 1322451431}
+  - {fileID: 1537750826}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -398,3 +427,4 @@ MonoBehaviour:
   rotationSpeed: 3
   wave: {fileID: 1982119022121220, guid: 809c4dc0e3d4c8c4a8d0f201be07570f, type: 2}
   waveSpawnPoint: {fileID: 1322451430}
+  waveSpawnDirection: {fileID: 1537750825}
