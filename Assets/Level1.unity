@@ -425,6 +425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 3
+  microwaveSpeed: 3
   wave: {fileID: 1982119022121220, guid: 809c4dc0e3d4c8c4a8d0f201be07570f, type: 2}
   waveSpawnPoint: {fileID: 1322451430}
   waveSpawnDirection: {fileID: 1537750825}
