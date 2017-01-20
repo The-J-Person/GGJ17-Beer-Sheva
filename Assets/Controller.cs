@@ -35,7 +35,8 @@ public class Controller : MonoBehaviour {
             
         if (doubleClicker.DoubleClickCheak())
         {
-            Instantiate(wave, waveSpawnPoint.transform.position, waveSpawnDirection.transform.rotation);
+			GameObject bullet = (GameObject)Instantiate(wave, waveSpawnPoint.transform.position, waveSpawnDirection.transform.rotation);
+			Destroy (bullet, 5);
         }
     }
 
