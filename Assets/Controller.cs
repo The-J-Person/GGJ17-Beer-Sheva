@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controller : MonoBehaviour {
+public class Controller : MonoBehaviour
+{
 
     private Animator animator;
     private Vector3 rotationDirection;
@@ -15,14 +16,16 @@ public class Controller : MonoBehaviour {
     public GameObject waveSpawnPoint;
     public GameObject waveSpawnDirection;
 
-    
-    void Start () {
+
+    void Start()
+    {
         animator = GetComponent<Animator>();
         rotationDirection = Vector3.back * rotationSpeed;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         transform.Rotate(rotationDirection);
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -48,10 +51,11 @@ public class Controller : MonoBehaviour {
             //transform.Translate(transform.rotation * microwaveSpeed * Time.deltaTime);            
             transform.position += transform.position * Time.deltaTime * microwaveSpeed;
         }
-            
+
         if (doubleClicker.DoubleClickCheck())
         {
-            Instantiate(wave, waveSpawnPoint.transform.position, waveSpawnDirection.transform.rotation);
+            GameObject bullet = (GameObject)Instantiate(wave, waveSpawnPoint.transform.position, waveSpawnDirection.transform.rotation);
+            Destroy(bullet, 5);
         }
     }
 
