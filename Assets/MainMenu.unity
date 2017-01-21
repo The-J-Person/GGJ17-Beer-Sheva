@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 1787352021}
   m_Layer: 5
   m_Name: GameObjectWithGodMode
-  m_TagString: Untagged
+  m_TagString: yosef
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
