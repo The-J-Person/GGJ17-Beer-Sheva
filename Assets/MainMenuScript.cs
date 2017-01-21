@@ -4,13 +4,27 @@ using UnityEngine;
 
 public class MainMenuScript : MonoBehaviour {
 
+    public int numWarriors = 2;
+
     public void onClick()
     {
         Application.LoadLevel(1);
     }
 
-	// Use this for initialization
-	void Start () {
+    public void onSliderChanged(int v)
+    {
+        numWarriors = v;
+    }
+
+
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
+
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

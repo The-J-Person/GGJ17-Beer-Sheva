@@ -16,6 +16,9 @@ public class GameController : MonoBehaviour {
 
 
 	void Start () {
+
+        GameObject a = GameObject.FindGameObjectWithTag("yosef");
+        MainMenuScript b = a.GetComponent<MainMenuScript>();
         IEnumerator<Vector3> startPosIt = getNextWarriorStartPosition();
         IEnumerator<KeyCode> keyIt = getNextKey();
         for (int i = 0; i < warriorCount; i++)
