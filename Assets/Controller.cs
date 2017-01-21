@@ -80,6 +80,32 @@ public class Controller : MonoBehaviour
 
         if (goingForward)
         {
+            if (transform.position.y < -10f)
+            {
+                transform.position = new Vector3(transform.position.x, -10f, transform.position.z);
+                return;
+            }
+                
+            if (transform.position.y > 9f)
+            {
+                transform.position = new Vector3(transform.position.x, 9f, transform.position.z);
+                return;
+            }
+                
+
+            if (transform.position.x < -13f)
+            {
+                transform.position = new Vector3(-13f, transform.position.y, transform.position.z);
+                return;
+            }
+                
+            if (transform.position.x > 16f)
+            {
+                transform.position = new Vector3(16f, transform.position.y, transform.position.z);
+                return;
+            }
+                
+
             if(microwaveSpeed < 1.7f)
                 microwaveSpeed *= 1.07f;
             transform.Translate(0, microwaveSpeed, 0,Space.Self);            
