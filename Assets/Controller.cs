@@ -16,6 +16,9 @@ public class Controller : MonoBehaviour
     public GameObject waveSpawnPoint;
     public GameObject waveSpawnDirection;
 
+	public GameObject explosion;
+	public int explosiontime;
+
     public KeyCode keyCode;
 
 
@@ -25,6 +28,26 @@ public class Controller : MonoBehaviour
         rotationDirection = Vector3.back * rotationSpeed;
         doubleClicker = new DoubleClicker(keyCode);
     }
+
+	void fireworks()
+	{
+		float timeleft = 100;
+		float middelta = 100;
+		while (timeleft > 0) {
+			if (middelta <= 0) {
+				middelta = 100;
+				continue;
+			} else {
+				middelta += Time.deltaTime;
+			}
+			timeleft -= Time.deltaTime;
+			float xdiff = Random.Range (-2, 3);
+			float ydiff = Random.Range (-2, 3);
+			Vector3 posdiff = new Vector3 (xdiff, ydiff,0);
+			GameObject boom = (GameObject)Instantiate (explosion, transform.position+posdiff, transform.rotation);
+			Destroy (boom, 5);
+		}
+	}
 
     void Update()
     {
@@ -57,6 +80,7 @@ public class Controller : MonoBehaviour
             animator.Play("Fire");
             GameObject bullet = (GameObject)Instantiate(wave, waveSpawnPoint.transform.position, waveSpawnDirection.transform.rotation);
             Destroy(bullet, 5);
+			fireworks ();
         }
     }
 
