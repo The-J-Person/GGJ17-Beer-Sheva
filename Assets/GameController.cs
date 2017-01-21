@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
     public Controller[] warriors;
     public GameObject worldCenter;
+
+    private Text winnerText;
 
 	void Start () {
         IEnumerator<Vector3> startPosIt = getNextWarriorStartPosition();
@@ -19,6 +22,9 @@ public class GameController : MonoBehaviour {
             Instantiate(warriors[i], startPosIt.Current, Quaternion.LookRotation(worldCenter.transform.position) );
             warriors[i].keyCode = keyIt.Current;
         }
+
+        winnerText = GetComponent<Text>();
+        winnerText.enabled = false;
 	}
 
     private IEnumerator<KeyCode> getNextKey()
@@ -57,7 +63,26 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    void Update () {
-		
-	}
+    void Update ()
+    {
+        int livingWarriors = 0;
+        livingWarriors = getWarriorsCount(livingWarriors);
+
+        if (livingWarriors == 1)
+        {
+            winnerText.enabled = true;
+        }
+
+    }
+
+    private int getWarriorsCount(int livingWarriors)
+    {
+        for (int i = 0; i < warriors.Length; i++)
+        {
+            if (warriors[i].isAlive)
+                livingWarriors++;
+        }
+
+        return livingWarriors;
+    }
 }
