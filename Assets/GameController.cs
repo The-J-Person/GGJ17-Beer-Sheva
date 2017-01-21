@@ -6,25 +6,29 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-    public Controller[] warriors;
+    public GameObject warrior;
     public GameObject worldCenter;
+    public Texture2D winnerTexture;
 
-    private Text winnerText;
+    private bool  showWinner = false;
+    private int warriorCount = 4;
+    private List<Controller> warriorList = new List<Controller>();
+
 
 	void Start () {
         IEnumerator<Vector3> startPosIt = getNextWarriorStartPosition();
         IEnumerator<KeyCode> keyIt = getNextKey();
-        for (int i = 0; i < warriors.Length; i++)
+        for (int i = 0; i < warriorCount; i++)
         {            
             startPosIt.MoveNext();
             keyIt.MoveNext();
 
-            Instantiate(warriors[i], startPosIt.Current, Quaternion.LookRotation(worldCenter.transform.position) );
-            warriors[i].keyCode = keyIt.Current;
+            GameObject warriorGameObject = Instantiate(warrior, startPosIt.Current, Quaternion.LookRotation(worldCenter.transform.position) );
+            Controller w = warriorGameObject.GetComponent<Controller>();
+            warriorList.Add(w);
+            w.keyCode = keyIt.Current;            
         }
 
-        winnerText = GetComponent<Text>();
-        winnerText.enabled = false;
 	}
 
     private IEnumerator<KeyCode> getNextKey()
@@ -36,10 +40,11 @@ public class GameController : MonoBehaviour {
         preconfiguredWarriorsKeys.Add(KeyCode.M);
         preconfiguredWarriorsKeys.Add(KeyCode.Z);
 
-        for (int i=0; i < warriors.Length; i++)
+        foreach (KeyCode i in preconfiguredWarriorsKeys)
         {
-            yield return preconfiguredWarriorsKeys[i];
+            yield return i;
         }
+        
     }
 
     private IEnumerator<Vector3> getNextWarriorStartPosition()
@@ -49,37 +54,47 @@ public class GameController : MonoBehaviour {
         preconfiguredLocations.Add(new Vector3(5, -5, 0));
         preconfiguredLocations.Add(new Vector3(-5, 0, 0));
         preconfiguredLocations.Add(new Vector3(5, 0, 0));
-        preconfiguredLocations.Add(new Vector3(5, 0, 0));
-        preconfiguredLocations.Add(new Vector3(0, 1, 0));
+        preconfiguredLocations.Add(new Vector3(5, 2, 0));
+        preconfiguredLocations.Add(new Vector3(4, 3, 0));
         preconfiguredLocations.Add(new Vector3(0, 2, 0));
         preconfiguredLocations.Add(new Vector3(0, 3, 0));
         preconfiguredLocations.Add(new Vector3(0, 4, 0));
         preconfiguredLocations.Add(new Vector3(0, 5, 0));
         preconfiguredLocations.Add(new Vector3(0, 6, 0));
 
-        for (int i = 0; i < warriors.Length; i++)
+        foreach(Vector3 v in preconfiguredLocations)
         {
-            yield return preconfiguredLocations[i];
-        }
+            yield return v;
+        }        
     }
 
     void Update ()
     {
         int livingWarriors = 0;
-        livingWarriors = getWarriorsCount(livingWarriors);
+        livingWarriors = getWarriorsCount();
 
         if (livingWarriors == 1)
         {
-            winnerText.enabled = true;
+            showWinner = true;
         }
 
     }
 
-    private int getWarriorsCount(int livingWarriors)
+    void OnGUI()
     {
-        for (int i = 0; i < warriors.Length; i++)
-        {
-            if (warriors[i].isAlive)
+        if (!showWinner)
+            return;
+
+        GUI.Label(new Rect(0, 0, Screen.width, Screen.height), winnerTexture);
+    }
+
+    private int getWarriorsCount()
+    {
+        int livingWarriors = 0;
+        
+        foreach (Controller i in warriorList)
+        {            
+            if (i.isAlive)
                 livingWarriors++;
         }
 
