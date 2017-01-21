@@ -16,7 +16,7 @@ public class Controller : MonoBehaviour
     public GameObject wave;
     public GameObject waveSpawnPoint;
     public GameObject waveSpawnDirection;
-    public int hp=1;
+    public int hp = 7;
 
 	public GameObject explosion;
 	public int explosiontime;
@@ -89,6 +89,7 @@ public class Controller : MonoBehaviour
     {
         if (collision.gameObject.tag == "bullet")
         {
+            Destroy(collision.gameObject);
             hp--;
         }
     }
