@@ -8,8 +8,8 @@ public class Controller : MonoBehaviour
     private Animator animator;
     private Vector3 rotationDirection;
     private DoubleClicker doubleClicker;
-    bool goingForward = false;
-    bool isAlive = true;
+    private bool goingForward = false;
+    public bool isAlive = true;
 
     public int rotationSpeed;
     public float microwaveSpeed;
