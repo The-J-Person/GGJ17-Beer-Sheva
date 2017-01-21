@@ -15,6 +15,7 @@ public class Controller : MonoBehaviour
     public GameObject wave;
     public GameObject waveSpawnPoint;
     public GameObject waveSpawnDirection;
+    public int hp=1;
 
 	public GameObject explosion;
 	public int explosiontime;
@@ -54,11 +55,6 @@ public class Controller : MonoBehaviour
         if (Input.GetKey(keyCode))
         {
             goingForward = true;
-            
-            //if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
-            //{
-            //animator.Play("Fire");
-            //}
         }
         else
         {
@@ -81,6 +77,20 @@ public class Controller : MonoBehaviour
             GameObject bullet = (GameObject)Instantiate(wave, waveSpawnPoint.transform.position, waveSpawnDirection.transform.rotation);
             Destroy(bullet, 5);
 			fireworks ();
+        }
+
+        if(hp == 0)
+        {
+            animator.Play("Death");
+            Destroy(this,3);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            hp--;
         }
     }
 
