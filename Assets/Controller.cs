@@ -16,10 +16,11 @@ public class Controller : MonoBehaviour
     public GameObject wave;
     public GameObject waveSpawnPoint;
     public GameObject waveSpawnDirection;
-    public int hp;
+    public int maxhp;
+	private int hp;
+	private GameObject hpbar;
 
 	public GameObject explosion;
-	public int explosiontime;
 
     public KeyCode keyCode;
 
@@ -29,21 +30,27 @@ public class Controller : MonoBehaviour
         animator = GetComponent<Animator>();
         rotationDirection = Vector3.back * rotationSpeed;
         doubleClicker = new DoubleClicker(keyCode);
+		hp = maxhp;
+		hpbar = transform.Find ("SquareHPBar").gameObject;
     }
+
+	GameObject burst()
+	{
+		float xdiff = Random.Range(-5f, 5f) / 7f;
+		float ydiff = Random.Range(-5f, 5f) / 7f;
+		Vector3 posdiff = new Vector3(xdiff, ydiff, 0);
+		return (GameObject)Instantiate(explosion, transform.position + posdiff, transform.rotation);
+	}
 
 	void fireworks()
 	{
-        for (int i = 0; i < 30; i++ )
-        {
-            float xdiff = Random.Range(-5f, 5f) / 7f;
-            float ydiff = Random.Range(-5f, 5f) / 7f;
-            Vector3 posdiff = new Vector3(xdiff, ydiff, 0);
-            GameObject boom = (GameObject)Instantiate(explosion, transform.position + posdiff, transform.rotation);
-            float deathLength = Random.Range(1f, 5f);
-            Destroy(boom, deathLength);
-        }
-        
-    }
+		for (int i = 0; i < 30; i++ )
+		{
+			GameObject boom = burst ();
+			float deathLength = Random.Range(1f, 5f);
+			Destroy(boom, deathLength);
+		}
+	}
 
     void Update()
     {
@@ -79,6 +86,7 @@ public class Controller : MonoBehaviour
         if(hp == 0)
         {
             isAlive = false;
+			hpbar.transform.localScale *= 0;
             fireworks();
             animator.Play("Death");
             Destroy(this.gameObject,5); // this microwave warrior
@@ -90,6 +98,10 @@ public class Controller : MonoBehaviour
         if (collision.gameObject.tag == "bullet")
         {
             Destroy(collision.gameObject);
+			GameObject boom = burst ();
+			Destroy (boom, 1);
+			float ratio = (float)hp / (float)maxhp;
+			hpbar.transform.localScale = new Vector3(1.2f*(ratio),0.15f,1.0f);
             hp--;
         }
     }
