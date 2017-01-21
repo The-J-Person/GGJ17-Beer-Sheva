@@ -75,11 +75,14 @@ public class Controller : MonoBehaviour
         if (Input.GetKeyUp(keyCode))
         {
             goingForward = false;
+            microwaveSpeed = 0.01f;
         }
 
         if (goingForward)
         {
-            transform.Translate(0,0.01f,0,Space.Self);            
+            if(microwaveSpeed < 1.7f)
+                microwaveSpeed *= 1.01f;
+            transform.Translate(0, microwaveSpeed, 0,Space.Self);            
         }
 
         if (doubleClicker.DoubleClickCheck())
