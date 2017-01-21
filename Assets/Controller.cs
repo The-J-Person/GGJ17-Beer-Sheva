@@ -86,7 +86,6 @@ public class Controller : MonoBehaviour
         if(hp == 0)
         {
             isAlive = false;
-			hpbar.transform.localScale *= 0;
             fireworks();
             animator.Play("Death");
             Destroy(this.gameObject,5); // this microwave warrior
@@ -100,9 +99,9 @@ public class Controller : MonoBehaviour
             Destroy(collision.gameObject);
 			GameObject boom = burst ();
 			Destroy (boom, 1);
+            hp--;
 			float ratio = (float)hp / (float)maxhp;
 			hpbar.transform.localScale = new Vector3(1.2f*(ratio),0.15f,1.0f);
-            hp--;
         }
     }
 
