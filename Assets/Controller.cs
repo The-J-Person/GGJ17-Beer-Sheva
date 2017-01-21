@@ -58,7 +58,7 @@ public class Controller : MonoBehaviour
         if(hp == 0)
         {
             animator.Play("Death");
-            Destroy(this, 5);
+            Destroy(this,3);
         }
     }
 
