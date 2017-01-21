@@ -16,7 +16,7 @@ public class Controller : MonoBehaviour
     public GameObject wave;
     public GameObject waveSpawnPoint;
     public GameObject waveSpawnDirection;
-    public int hp = 7;
+    public int hp;
 
 	public GameObject explosion;
 	public int explosiontime;
@@ -81,7 +81,7 @@ public class Controller : MonoBehaviour
             isAlive = false;
             fireworks();
             animator.Play("Death");
-            Destroy(this,3); // this microwave warrior
+            Destroy(this.gameObject,5); // this microwave warrior
         }
     }
 
