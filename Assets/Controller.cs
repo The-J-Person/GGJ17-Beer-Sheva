@@ -9,6 +9,7 @@ public class Controller : MonoBehaviour
     private Vector3 rotationDirection;
     private DoubleClicker doubleClicker;
     bool goingForward = false;
+    bool isAlive = true;
 
     public int rotationSpeed;
     public float microwaveSpeed;
@@ -32,26 +33,23 @@ public class Controller : MonoBehaviour
 
 	void fireworks()
 	{
-		float timeleft = 100;
-		float middelta = 100;
-		while (timeleft > 0) {
-			if (middelta <= 0) {
-				middelta = 100;
-				continue;
-			} else {
-				middelta += Time.deltaTime;
-			}
-			timeleft -= Time.deltaTime;
-			float xdiff = Random.Range (-2, 3);
-			float ydiff = Random.Range (-2, 3);
-			Vector3 posdiff = new Vector3 (xdiff, ydiff,0);
-			GameObject boom = (GameObject)Instantiate (explosion, transform.position+posdiff, transform.rotation);
-			Destroy (boom, 5);
-		}
-	}
+        for (int i = 0; i < 30; i++ )
+        {
+            float xdiff = Random.Range(-5f, 5f) / 7f;
+            float ydiff = Random.Range(-5f, 5f) / 7f;
+            Vector3 posdiff = new Vector3(xdiff, ydiff, 0);
+            GameObject boom = (GameObject)Instantiate(explosion, transform.position + posdiff, transform.rotation);
+            float deathLength = Random.Range(1f, 5f);
+            Destroy(boom, deathLength);
+        }
+        
+    }
 
     void Update()
     {
+        if (!isAlive)
+            return;
+
         if (Input.GetKey(keyCode))
         {
             goingForward = true;
@@ -75,14 +73,15 @@ public class Controller : MonoBehaviour
         {
             animator.Play("Fire");
             GameObject bullet = (GameObject)Instantiate(wave, waveSpawnPoint.transform.position, waveSpawnDirection.transform.rotation);
-            Destroy(bullet, 5);
-			fireworks ();
+            Destroy(bullet, 5);			
         }
 
         if(hp == 0)
         {
+            isAlive = false;
+            fireworks();
             animator.Play("Death");
-            Destroy(this,3);
+            Destroy(this,3); // this microwave warrior
         }
     }
 
