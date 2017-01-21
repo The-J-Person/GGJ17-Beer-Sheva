@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114192287561609492}
   - component: {fileID: 61288846233552256}
   - component: {fileID: 50672053479646528}
+  - component: {fileID: 82025002040278264}
   m_Layer: 0
   m_Name: MicrowaveWarrior
   m_TagString: Player
@@ -225,6 +226,86 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.07}
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1}
+--- !u!82 &82025002040278264
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1048118635624188}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95217394651966172
 Animator:
   serializedVersion: 3
@@ -259,9 +340,12 @@ MonoBehaviour:
   wave: {fileID: 1982119022121220, guid: 809c4dc0e3d4c8c4a8d0f201be07570f, type: 2}
   waveSpawnPoint: {fileID: 1911773924918210}
   waveSpawnDirection: {fileID: 1836418653011560}
-  maxhp: 1
+  maxhp: 7
   explosion: {fileID: 1116182557258754, guid: 8e5cd4aa33f04455f8733d4e7de5f6cc, type: 2}
   keyCode: 109
+  hitsound: {fileID: 8300000, guid: 09c9d866be4bf446cb4722351d4566b3, type: 3}
+  deathsound: {fileID: 8300000, guid: 468342d93f6b94d2383b7df3459880a2, type: 3}
+  shootsound: {fileID: 8300000, guid: c27aa42056ff74b52a37ffd9b4ab66a6, type: 3}
 --- !u!212 &212308393169771452
 SpriteRenderer:
   m_ObjectHideFlags: 1

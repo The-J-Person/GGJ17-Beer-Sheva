@@ -24,6 +24,11 @@ public class Controller : MonoBehaviour
 
     public KeyCode keyCode;
 
+	public AudioClip hitsound;
+	public AudioClip deathsound;
+	public AudioClip shootsound;
+
+	private AudioSource audioplayer;
 
     void Start()
     {
@@ -32,6 +37,7 @@ public class Controller : MonoBehaviour
         doubleClicker = new DoubleClicker(keyCode);
 		hp = maxhp;
 		hpbar = transform.Find ("SquareHPBar").gameObject;
+		audioplayer = GetComponent<AudioSource>();
     }
 
 	GameObject burst()
@@ -79,6 +85,7 @@ public class Controller : MonoBehaviour
         if (doubleClicker.DoubleClickCheck())
         {
             animator.Play("Fire");
+			audioplayer.PlayOneShot (shootsound,Random.Range (0.5f, 1.0f));
             GameObject bullet = (GameObject)Instantiate(wave, waveSpawnPoint.transform.position, waveSpawnDirection.transform.rotation);
             Destroy(bullet, 5);			
         }
@@ -87,6 +94,7 @@ public class Controller : MonoBehaviour
         {
             isAlive = false;
             fireworks();
+			audioplayer.PlayOneShot (deathsound, 1.0f);
             animator.Play("Death");
             Destroy(this.gameObject,5); // this microwave warrior
         }
@@ -96,6 +104,7 @@ public class Controller : MonoBehaviour
     {
         if (collision.gameObject.tag == "bullet")
         {
+			audioplayer.PlayOneShot (hitsound,Random.Range (0.5f, 1.0f));
             Destroy(collision.gameObject);
 			GameObject boom = burst ();
 			Destroy (boom, 1);
