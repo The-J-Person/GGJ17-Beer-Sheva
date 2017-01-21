@@ -336,7 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 1
   rotationSpeed: 3
-  microwaveSpeed: 1
+  microwaveSpeed: 0.01
   wave: {fileID: 1982119022121220, guid: 809c4dc0e3d4c8c4a8d0f201be07570f, type: 2}
   waveSpawnPoint: {fileID: 1911773924918210}
   waveSpawnDirection: {fileID: 1836418653011560}
