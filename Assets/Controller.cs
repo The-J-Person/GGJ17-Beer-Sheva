@@ -81,7 +81,7 @@ public class Controller : MonoBehaviour
         if (goingForward)
         {
             if(microwaveSpeed < 1.7f)
-                microwaveSpeed *= 1.01f;
+                microwaveSpeed *= 1.07f;
             transform.Translate(0, microwaveSpeed, 0,Space.Self);            
         }
 
